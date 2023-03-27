@@ -40,3 +40,4 @@
 .fake
 processamento-grafico/**/app
 processamento-grafico/**/app.dSYM/
+.DS_Store
