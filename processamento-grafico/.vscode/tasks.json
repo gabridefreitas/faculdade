@@ -1,0 +1,52 @@
+{
+  "version": "2.0.0",
+  "inputs": [
+    {
+      "id": "project",
+      "type": "pickString",
+      "description": "Wich project do you want to build?",
+      "options": ["hello-triangle", "hello-triangle-shader"],
+      "default": "hello-triangle"
+    }
+  ],
+  "tasks": [
+    {
+      "type": "cppbuild",
+      "label": "C/C++: clang++ arquivo de build ativo",
+      "command": "/usr/bin/clang++",
+      "args": [
+        "-std=c++17",
+        "-fcolor-diagnostics",
+        "-Wall",
+        "-g",
+        "-I${workspaceFolder}/dependencies/include",
+        "-L${workspaceFolder}/dependencies/library",
+        "${workspaceFolder}/dependencies/library/libglfw.3.3.dylib",
+        "${workspaceFolder}/${input:project}/*.cpp",
+        "${workspaceFolder}/glad.c",
+        "-o",
+        "${workspaceFolder}/${input:project}/app",
+        "-framework",
+        "OpenGL",
+        "-framework",
+        "Cocoa",
+        "-framework",
+        "IOKit",
+        "-framework",
+        "CoreVideo",
+        "-framework",
+        "CoreFoundation",
+        "-Wno-deprecated"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": ["$gcc"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "compilador: /usr/bin/clang++"
+    }
+  ]
+}
