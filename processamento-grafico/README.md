@@ -10,11 +10,13 @@
 
 - GLFW
 - GLAD
+- GLM
 
 ## **PROJECTS**
 
 1. hello-triangle (`Default`)
 1. hello-triangle-with-shaders
+1. hello-triangle-with-glm
 
 ## **RUN**
 

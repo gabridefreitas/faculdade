@@ -5,7 +5,11 @@
       "id": "project",
       "type": "pickString",
       "description": "Wich project do you want to build?",
-      "options": ["hello-triangle", "hello-triangle-shader"],
+      "options": [
+        "hello-triangle",
+        "hello-triangle-shader",
+        "hello-triangle-glm"
+      ],
       "default": "hello-triangle"
     }
   ],
