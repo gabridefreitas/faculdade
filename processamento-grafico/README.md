@@ -17,6 +17,7 @@
 1. hello-triangle (`Default`)
 1. hello-triangle-with-shaders
 1. hello-triangle-with-glm
+1. list_a
 
 ## **RUN**
 
