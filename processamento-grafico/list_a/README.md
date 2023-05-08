@@ -55,9 +55,8 @@ No arquivo [main.cpp](./main.cpp#L54) no método `main` remova o comentário da 
     ![pentagono](./assets/pentagono.png)
 3. [Desenhe um pac-man!](./pacman/main.cpp)
     ![pacman](./assets/pacman.png)
-4. [Desenhe uma fatia de pizza]()
-    ![circulo](./assets/circulo.png)
+4. [Desenhe uma fatia de pizza](./pizza/main.cpp)
+    ![pizza](./assets/pizza.png)
 5. [DESAFIO: desenhe uma “estrela”]()
-    ![circulo](./assets/circulo.png)
 
 ### 7 - Desenhe uma espiral

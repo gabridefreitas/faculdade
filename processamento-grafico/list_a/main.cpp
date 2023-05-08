@@ -21,6 +21,7 @@ using namespace std;
 #include "octagon/main.cpp"
 #include "pentagon/main.cpp"
 #include "pacman/main.cpp"
+#include "pizza/main.cpp"
 
 GLuint INITIAL_WIDTH = 720, INITIAL_HEIGHT = 405;
 
@@ -97,8 +98,11 @@ int main() {
   // renderPentagon(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
   //                setWindowSize);
 
-  renderPacman(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
-               setWindowSize);
+  // renderPacman(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
+  //              setWindowSize);
+
+  renderPizzaSlice(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
+                   setWindowSize);
 
   return 0;
 }
