@@ -32,9 +32,9 @@ Não precisa entregar nada neste exercício
 
 ## Questões práticas
 
-### 5 - Faça o desenho de 2 triângulos na tela. Desenhe eles
-
 No arquivo [main.cpp](./main.cpp#L54) no método `main` remova o comentário da linha de render desejada, [compile e execute o app](../README.md#L29)
+
+### 5 - Faça o desenho de 2 triângulos na tela. Desenhe eles
 
 1. [Apenas com o polígono preenchido](./two-triangles/main.cpp)
     ![preenchido](./assets/preenchido.png)
@@ -47,10 +47,17 @@ No arquivo [main.cpp](./main.cpp#L54) no método `main` remova o comentário da 
 
 ### 6 - Faça o desenho de um círculo na tela, utilizando a equação paramétrica do círculo para gerar os vértices. Depois disso
 
+0. [Desenhe um circulo](./circle/main.cpp)
+    ![circulo](./assets/circulo.png)
 1. [Desenhe um octágono]()
+    ![octagono](./assets/octagono.png)
 2. [Desenhe um pentágono]()
+    ![pentagono](./assets/pentagono.png)
 3. [Desenhe um pac-man!]()
+    ![circulo](./assets/circulo.png)
 4. [Desenhe uma fatia de pizza]()
+    ![circulo](./assets/circulo.png)
 5. [DESAFIO: desenhe uma “estrela”]()
+    ![circulo](./assets/circulo.png)
 
 ### 7 - Desenhe uma espiral
