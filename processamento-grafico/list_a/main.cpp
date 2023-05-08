@@ -8,11 +8,19 @@ using namespace std;
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "two-triangles/main.cpp"
 #include "two-triangles-line/main.cpp"
 #include "two-triangles-point/main.cpp"
 #include "two-triangles-combined/main.cpp"
+#include "circle/main.cpp"
+#include "octagon/main.cpp"
+#include "pentagon/main.cpp"
+#include "pacman/main.cpp"
 
 GLuint INITIAL_WIDTH = 720, INITIAL_HEIGHT = 405;
 
@@ -43,12 +51,24 @@ void loadGlad() {
   std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
 }
 
-void setWindowSize(GLFWwindow* window) {
+void setWindowSize(GLFWwindow* window, GLuint shaderID = -1) {
   int width, height;
 
   glfwGetFramebufferSize(window, &width, &height);
 
   glViewport(0, 0, width, height);
+
+  if (shaderID == -1) {
+    return;
+  }
+
+  if (width >= height) {
+    GLfloat ratio = width / (GLfloat)height;
+    glUniform1f(glGetUniformLocation(shaderID, "ratio"), ratio);
+  } else {
+    GLfloat ratio = height / (GLfloat)width;
+    glUniform1f(glGetUniformLocation(shaderID, "ratio"), ratio);
+  }
 }
 
 int main() {
@@ -65,8 +85,20 @@ int main() {
   // key_callback,
   //                         setWindowSize);
 
-  renderTwoTrianglesCombined(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad,
-                             key_callback, setWindowSize);
+  // renderTwoTrianglesCombined(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad,
+  //                            key_callback, setWindowSize);
+
+  // renderCircle(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
+  //              setWindowSize);
+
+  // renderOctagon(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
+  //               setWindowSize);
+
+  // renderPentagon(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
+  //                setWindowSize);
+
+  renderPacman(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
+               setWindowSize);
 
   return 0;
 }
