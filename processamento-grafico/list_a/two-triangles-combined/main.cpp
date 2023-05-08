@@ -56,7 +56,7 @@ int renderTwoTrianglesCombined(GLuint width, GLuint height, void (*loadGlad)(),
 
   loadGlad();
 
-  Shader shader("list_a//two-triangles-combined/vertex-shader.vs",
+  Shader shader("list_a/two-triangles-combined/vertex-shader.vs",
                 "list_a/two-triangles-combined/fragment-shader.fs");
 
   GLuint VAO = drawTrianglesCombined();

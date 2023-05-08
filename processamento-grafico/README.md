@@ -24,12 +24,12 @@
 1. hello-triangle
 1. hello-triangle-with-shaders
 1. hello-triangle-with-glm
-1. list_a (`default`)
+1. [list_a](./list_a/README.md) (`default`)
 
 ## **RUN**
 
 1. Make sure to have all project dependencies installed
-1. On project root, press `cmd+shift+B`, choose a project on prompt to build
+1. **On project root**, press `cmd+shift+B`, choose a project on prompt to build
 1. Run `./${project}/app` on terminal
 
-> In case of this error, open any `.cpp` file an try again. ![common_error](./assets/common_error.png)
+> In case of this error, open any file an try again. ![common_error](./assets/common_error.png)
