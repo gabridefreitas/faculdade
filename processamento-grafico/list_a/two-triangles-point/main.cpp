@@ -56,8 +56,8 @@ int renderTwoTrianglesPoint(GLuint width, GLuint height, void (*loadGlad)(),
 
   loadGlad();
 
-  Shader shader("two-triangles-point/vertex-shader.vs",
-                "two-triangles-point/fragment-shader.fs");
+  Shader shader("list_a/two-triangles-point/vertex-shader.vs",
+                "list_a/two-triangles-point/fragment-shader.fs");
 
   GLuint VAO = drawTrianglesPoint();
 
@@ -71,11 +71,11 @@ int renderTwoTrianglesPoint(GLuint width, GLuint height, void (*loadGlad)(),
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    glPointSize(20);
+    glPointSize(10);
 
     glBindVertexArray(VAO);
 
-    glDrawArrays(GL_POINT, 0, 6);
+    glDrawArrays(GL_POINTS, 0, 6);
 
     glBindVertexArray(0);
 

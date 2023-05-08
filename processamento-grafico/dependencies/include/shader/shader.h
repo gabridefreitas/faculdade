@@ -15,6 +15,10 @@ class Shader {
   // constructor generates the shader on the fly
   // ------------------------------------------------------------------------
   Shader(const char *vertexPath, const char *fragmentPath) {
+    // 0. log the paths
+    std::cout << "vertexPath: " << vertexPath << std::endl;
+    std::cout << "fragmentPath: " << fragmentPath << std::endl;
+
     // 1. retrieve the vertex/fragment source code from filePath
     std::string vertexCode;
     std::string fragmentCode;

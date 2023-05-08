@@ -56,8 +56,8 @@ int renderTwoTrianglesLine(GLuint width, GLuint height, void (*loadGlad)(),
 
   loadGlad();
 
-  Shader shader("two-triangles-line/vertex-shader.vs",
-                "two-triangles-line/fragment-shader.fs");
+  Shader shader("list_a/two-triangles-line/vertex-shader.vs",
+                "list_a/two-triangles-line/fragment-shader.fs");
 
   GLuint VAO = drawTrianglesLine();
 

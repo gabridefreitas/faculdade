@@ -10,9 +10,9 @@ using namespace std;
 #include <GLFW/glfw3.h>
 
 #include "two-triangles/main.cpp"
-#include "two-triangles-all/main.cpp"
 #include "two-triangles-line/main.cpp"
 #include "two-triangles-point/main.cpp"
+#include "two-triangles-combined/main.cpp"
 
 GLuint INITIAL_WIDTH = 720, INITIAL_HEIGHT = 405;
 
@@ -54,8 +54,8 @@ void setWindowSize(GLFWwindow* window) {
 int main() {
   config();
 
-  renderTwoTriangles(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
-                     setWindowSize);
+  // renderTwoTriangles(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
+  //                    setWindowSize);
 
   // renderTwoTrianglesLine(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad,
   // key_callback,
@@ -65,9 +65,8 @@ int main() {
   // key_callback,
   //                         setWindowSize);
 
-  // renderTwoTrianglesAll(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad,
-  // key_callback,
-  //                         setWindowSize);
+  renderTwoTrianglesCombined(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad,
+                             key_callback, setWindowSize);
 
   return 0;
 }
