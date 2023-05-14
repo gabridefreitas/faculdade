@@ -9,9 +9,10 @@
         "hello-triangle",
         "hello-triangle-shader",
         "hello-triangle-glm",
-        "list_a"
+        "list_a",
+        "list_b"
       ],
-      "default": "list_a"
+      "default": "list_b"
     }
   ],
   "tasks": [
