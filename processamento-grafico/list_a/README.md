@@ -61,3 +61,6 @@ No arquivo [main.cpp](./main.cpp#L54) no método `main` remova o comentário da 
     ![estrela](./assets/estrela.png)
 
 ### 7 - Desenhe uma espiral
+
+[Código](./spiral/main.cpp)
+![espiral](./assets/espiral.png)

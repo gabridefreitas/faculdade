@@ -23,6 +23,7 @@ using namespace std;
 #include "pacman/main.cpp"
 #include "pizza/main.cpp"
 #include "star/main.cpp"
+#include "spiral/main.cpp"
 
 GLuint INITIAL_WIDTH = 720, INITIAL_HEIGHT = 405;
 
@@ -109,8 +110,11 @@ int main() {
   // renderPizzaSlice(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
   //                  setWindowSize);
 
-  renderStar(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
-             setWindowSize);
+  // renderStar(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
+  //            setWindowSize);
+
+  renderSpiral(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
+               setWindowSize);
 
   return 0;
 }

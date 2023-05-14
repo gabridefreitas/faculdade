@@ -59,7 +59,8 @@
     "iterator": "cpp",
     "memory_resource": "cpp",
     "random": "cpp",
-    "utility": "cpp"
+    "utility": "cpp",
+    "numbers": "cpp"
   },
   "C_Cpp.clang_format_fallbackStyle": "Google",
   "C_Cpp.clang_format_sortIncludes": false
