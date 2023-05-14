@@ -22,6 +22,7 @@ using namespace std;
 #include "pentagon/main.cpp"
 #include "pacman/main.cpp"
 #include "pizza/main.cpp"
+#include "star/main.cpp"
 
 GLuint INITIAL_WIDTH = 720, INITIAL_HEIGHT = 405;
 
@@ -52,16 +53,20 @@ void loadGlad() {
   std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
 }
 
-void setWindowSize(GLFWwindow* window, GLuint shaderID = -1) {
+void setWindowSize(GLFWwindow* window) {
   int width, height;
 
   glfwGetFramebufferSize(window, &width, &height);
 
   glViewport(0, 0, width, height);
+}
 
-  if (shaderID == -1) {
-    return;
-  }
+void setWindowSize(GLFWwindow* window, GLuint shaderID) {
+  int width, height;
+
+  glfwGetFramebufferSize(window, &width, &height);
+
+  glViewport(0, 0, width, height);
 
   if (width >= height) {
     GLfloat ratio = width / (GLfloat)height;
@@ -101,8 +106,11 @@ int main() {
   // renderPacman(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
   //              setWindowSize);
 
-  renderPizzaSlice(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
-                   setWindowSize);
+  // renderPizzaSlice(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
+  //                  setWindowSize);
+
+  renderStar(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
+             setWindowSize);
 
   return 0;
 }
