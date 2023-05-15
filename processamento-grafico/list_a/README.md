@@ -75,6 +75,6 @@ No arquivo [main.cpp](./main.cpp#L54) no método `main` remova o comentário da 
 
 ![triangulo-pontos](./assets/triangulo-pontos.png)
 
-### 9 - Faça um desenho em um papel quadriculado (pode ser no computador mesmo) e reproduza-o utilizando primitivas em OpenGL. Neste exercício você poderá criar mais de um VAO e fazer mais de uma chamada de desenho para poder utilizar primitivas diferentes, se necessário
+### 9 - Faça um desenho em um papel quadriculado (pode ser no computador mesmo) e reproduza-o utilizando primitivas em OpenGL. Neste exercício você poderá criar mais de um VAO e fazer mais de uma chamada de desenho para poder utilizar primitivas diferentes, se necessário ![Enunciado](./assets/9-casa.png)
 
-![casa](./assets/.png)
+![casa](./assets/casa.png)

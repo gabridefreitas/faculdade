@@ -25,6 +25,7 @@ using namespace std;
 #include "star/main.cpp"
 #include "spiral/main.cpp"
 #include "triangle-points/main.cpp"
+#include "house/main.cpp"
 
 GLuint INITIAL_WIDTH = 720, INITIAL_HEIGHT = 405;
 
@@ -117,8 +118,11 @@ int main() {
   // renderSpiral(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
   //              setWindowSize);
 
-  renderTrianglePoints(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
-                       setWindowSize);
+  // renderTrianglePoints(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
+  //                      setWindowSize);
+
+  renderHouse(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
+              setWindowSize);
 
   return 0;
 }
