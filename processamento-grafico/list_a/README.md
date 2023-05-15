@@ -64,3 +64,17 @@ No arquivo [main.cpp](./main.cpp#L54) no método `main` remova o comentário da 
 
 [Código](./spiral/main.cpp)
 ![espiral](./assets/espiral.png)
+
+### 8 - Considerando o seguinte triângulo abaixo, formado pelos vértices P1, P2 e P3, respectivamente com as cores vermelho, verde e azul ![Enunciado](./assets/8-pontos.png)
+
+1. Descreva uma possível configuração dos buffers (VBO, VAO e EBO) para representá-lo
+
+2. Como estes atributos seriam identificados no vertex shader?
+
+3. Agora implemente!
+
+![triangulo-pontos](./assets/triangulo-pontos.png)
+
+### 9 - Faça um desenho em um papel quadriculado (pode ser no computador mesmo) e reproduza-o utilizando primitivas em OpenGL. Neste exercício você poderá criar mais de um VAO e fazer mais de uma chamada de desenho para poder utilizar primitivas diferentes, se necessário
+
+![casa](./assets/.png)

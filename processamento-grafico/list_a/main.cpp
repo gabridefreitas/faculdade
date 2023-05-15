@@ -24,6 +24,7 @@ using namespace std;
 #include "pizza/main.cpp"
 #include "star/main.cpp"
 #include "spiral/main.cpp"
+#include "triangle-points/main.cpp"
 
 GLuint INITIAL_WIDTH = 720, INITIAL_HEIGHT = 405;
 
@@ -113,8 +114,11 @@ int main() {
   // renderStar(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
   //            setWindowSize);
 
-  renderSpiral(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
-               setWindowSize);
+  // renderSpiral(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
+  //              setWindowSize);
+
+  renderTrianglePoints(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback,
+                       setWindowSize);
 
   return 0;
 }
