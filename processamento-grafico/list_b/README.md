@@ -17,9 +17,9 @@ Realizado desenhos das atividades 4 e 5. Essa configuração é útil para a ár
 ### 4 - Modifique o viewport para desenhar a cena apenas no seguinte quadrante da janela da aplicação ![Enunciado](./assets/4-enunciado.png)
 
 [Código](./triangle/main.cpp#L92)
-![Enunciado](./assets/1-sessao.png)
+![Uma sessão](./assets/1-sessao.png)
 
 ### 5 - Agora, desenhe a mesma cena nos 4 quadrantes ![Enunciado](./assets/5-enunciado.png)
 
 [Código](./triangle/main.cpp#L99)
-![Enunciado](./assets/4-sessao.png)
+![Quatro sessões](./assets/4-sessao.png)

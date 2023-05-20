@@ -25,7 +25,8 @@
 1. hello-triangle-with-shaders
 1. hello-triangle-with-glm
 1. [list_a](./list_a/README.md)
-1. [list_b](./list_b/README.md) (`default`)
+1. [list_b](./list_b/README.md)
+1. [list_b](./list_c/README.md) (`default`)
 
 ## **RUN**
 
