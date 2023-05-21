@@ -20,4 +20,5 @@
 
 ### 4 - (Desafio-extra) “Screensaver”: implemente um algoritmo que controle uma geometria (triângulo ou quadrilátero) com comportamento parecido com o do jogo “Pong” (quando atinge os limites da tela, espelha o vetor de direção)
 
-<!-- [Código](./triangle/main.cpp#L92) -->
+[Código](./pong/main.cpp#L86)
+![Pong](./assets/4-pong.gif)
