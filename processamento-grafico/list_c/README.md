@@ -11,7 +11,8 @@
 
 ![Enunciado](./assets/2-enunciado.png)
 
-<!-- [Código](./triangle/main.cpp#L71) -->
+[Código](./grid/main.cpp#L98)
+![Grid](./assets/2-grid.gif)
 
 ### 3 - Altere a posição de uma geometria (triângulo ou retângulo) nas 4 direções (cima, baixo, esquerda e direita) utilizando comandos de teclado para o controle (WASD ou setas)
 

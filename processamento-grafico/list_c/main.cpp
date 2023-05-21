@@ -16,6 +16,7 @@ using namespace std;
 #include "triangle/main.cpp"
 #include "move/main.cpp"
 #include "pong/main.cpp"
+#include "grid/main.cpp"
 
 GLuint INITIAL_WIDTH = 800, INITIAL_HEIGHT = 600;
 
@@ -53,7 +54,9 @@ int main() {
 
   // renderMove(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad);
 
-  renderPong(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback);
+  // renderPong(INITIAL_WIDTH, INITIAL_HEIGHT, loadGlad, key_callback);
+
+  renderGrid(loadGlad, key_callback);
 
   return 0;
 }
