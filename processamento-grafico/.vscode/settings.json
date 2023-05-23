@@ -63,5 +63,9 @@
     "numbers": "cpp"
   },
   "C_Cpp.clang_format_fallbackStyle": "Google",
-  "C_Cpp.clang_format_sortIncludes": false
+  "C_Cpp.clang_format_sortIncludes": false,
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "python.formatting.provider": "none"
 }
