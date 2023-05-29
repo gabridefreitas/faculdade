@@ -11,9 +11,10 @@
         "hello-triangle-glm",
         "list_a",
         "list_b",
-        "list_c"
+        "list_c",
+        "ga"
       ],
-      "default": "list_c"
+      "default": "ga"
     }
   ],
   "tasks": [
