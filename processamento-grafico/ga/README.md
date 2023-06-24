@@ -8,4 +8,4 @@ geométricas, câmera 2D e mapeamento de textura serão explorados. Sugere-se co
 inspiração para pesquisa para a escolha do tema e mecânicas jogos de fliperama,
 especialmente os mais antigos.
 
-![Grid](./assets/goal2goal.gif)
+![Goal2Goal](./assets/goal2goal.gif)
