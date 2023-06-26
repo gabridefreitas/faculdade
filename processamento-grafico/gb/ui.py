@@ -16,19 +16,20 @@ class UserInterface:
             sg.Text("Media:"),
             sg.FileBrowse(
                 button_color=ButtonColor.default,
-                key="-FILE-",
-                target="-TEXT-",
+                key=Config.events["file"],
+                target=Config.events["text"],
                 auto_size_button=True,
             ),
-            sg.FileSaveAs(
+            sg.Button(
+                button_text="Save",
                 button_color=ButtonColor.default,
-                key="-SAVE-",
+                key=Config.events["save"],
                 auto_size_button=True,
             ),
             sg.Button(
                 button_text="Record",
                 button_color=ButtonColor.default,
-                key="-RECORD-",
+                key=Config.events["record"],
                 auto_size_button=True,
             ),
         ],
@@ -62,7 +63,7 @@ class UserInterface:
                 sg.Button(
                     button_text="Clear",
                     enable_events=True,
-                    key="sticker-clear",
+                    key=Config.events["sticker-clear"],
                     button_color=ButtonColor.default,
                     auto_size_button=True,
                 ),
@@ -70,15 +71,16 @@ class UserInterface:
         ],
         [
             sg.Graph(
-                key="-IMAGE-",
+                key=Config.events["image"],
                 canvas_size=(720, 720),
                 graph_bottom_left=(0, 720),
                 graph_top_right=(720, 0),
                 enable_events=True,
             )
         ],
-        [sg.Text(key="-TEXT-")],
+        [sg.Text(key=Config.events["text"])],
     ]
 
     def __init__(self):
+        sg.set_options(dpi_awareness=True)
         self.window = sg.Window(UserInterface.ID, UserInterface.layout, resizable=True)

@@ -7,39 +7,31 @@ class Sticker:
         id: str,
         src: str,
     ):
-        self.id = id
-        self.src = src
-        self.isActive = False
-        self.x = None
-        self.y = None
-        self.scale = None
+        self.id: str = id
+        self.src: str = src
+        self.isActive: bool = False
+        self.x: int = None
+        self.y: int = None
 
-        image = cv.imread(src)
+        image = cv.imread(src, cv.IMREAD_UNCHANGED)
 
         aspectRatio = image.shape[1] / image.shape[0]
+        stickerImage = None
+        buttonImage = None
 
         if aspectRatio > 1:
-            self.image = cv.resize(image, (200, int(200 / aspectRatio)))
-
-            buttonImage = cv.resize(self.image, (int(50 * aspectRatio), 50))
-
-            self.buttonBytes = cv.imencode(".png", buttonImage)[1].tobytes()
+            stickerImage = cv.resize(image, (200, int(200 / aspectRatio)))
+            buttonImage = cv.resize(stickerImage, (int(50 * aspectRatio), 50))
         else:
-            self.image = cv.resize(image, (int(200 * aspectRatio), 200))
+            stickerImage = cv.resize(image, (int(200 * aspectRatio), 200))
+            buttonImage = cv.resize(stickerImage, (int(50 * aspectRatio), 50))
 
-            buttonImage = cv.resize(self.image, (int(50 * aspectRatio), 50))
+        self.image = cv.imencode(".png", stickerImage)[1].tobytes()
+        self.buttonBytes = cv.imencode(".png", buttonImage)[1].tobytes()
 
-            self.buttonBytes = cv.imencode(".png", buttonImage)[1].tobytes()
-
-    def position(self, x: int, y: int, scale: int):
+    def position(self, x: int, y: int):
         self.x = x
         self.y = y
-        self.scale = scale
-
-        width = int(self.image.shape[1] * scale / 100)
-        height = int(self.image.shape[0] * scale / 100)
-
-        self.image = cv.resize(self.image, (width, height), interpolation=cv.INTER_AREA)
 
     def toggle(self):
         self.isActive = not self.isActive

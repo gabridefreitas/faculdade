@@ -1,5 +1,3 @@
-import cv2 as cv
-
 from filter import Filter
 from filter_methods import FilterMethods
 from sticker import Sticker
@@ -28,17 +26,19 @@ class Config:
         Sticker("sticker-new-story", "assets/sticker-new-story.png"),
         Sticker("sticker-top", "assets/sticker-top.png"),
     ]
-
-    def getActiveFilters():
-        return list(filter(lambda filter: filter.isActive, Config.filters))
+    events = {
+        "save": "save",
+        "record": "record",
+        "sticker-clear": "sticker-clear",
+        "text": "text",
+        "image": "image",
+        "file": "file",
+    }
 
     def getFilter(id: str):
         for filter in Config.filters:
             if filter.id == id:
                 return filter
-
-    def getActiveStickers():
-        return list(filter(lambda sticker: sticker.isActive, Config.stickers))
 
     def getSticker(id: str):
         for sticker in Config.stickers:

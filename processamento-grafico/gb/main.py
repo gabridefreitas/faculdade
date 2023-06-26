@@ -2,131 +2,32 @@ import cv2 as cv
 import PySimpleGUI as sg
 
 from config import Config
+from helpers import (
+    applyFilters,
+    drawStickers,
+    handleButtonDisableState,
+    handleButtonEvent,
+    save,
+)
 from ui import UserInterface, ButtonColor
-from PySimpleGUI import Window
-
-
-def drawSticker(background, sticker, x_offset=None, y_offset=None):
-    bg_h, bg_w, bg_channels = background.shape
-    fg_h, fg_w, fg_channels = sticker.shape
-
-    assert (
-        bg_channels == 3
-    ), f"background image should have exactly 3 channels (RGB). found:{bg_channels}"
-    assert (
-        fg_channels == 4
-    ), f"sticker image should have exactly 4 channels (RGBA). found:{fg_channels}"
-
-    # center by default
-    if x_offset is None:
-        x_offset = (bg_w - fg_w) // 2
-    if y_offset is None:
-        y_offset = (bg_h - fg_h) // 2
-
-    w = min(fg_w, bg_w, fg_w + x_offset, bg_w - x_offset)
-    h = min(fg_h, bg_h, fg_h + y_offset, bg_h - y_offset)
-
-    if w < 1 or h < 1:
-        return
-
-    # clip sticker and background images to the overlapping regions
-    bg_x = max(0, x_offset)
-    bg_y = max(0, y_offset)
-    fg_x = max(0, x_offset * -1)
-    fg_y = max(0, y_offset * -1)
-    sticker = sticker[fg_y : fg_y + h, fg_x : fg_x + w]
-    background_subsection = background[bg_y : bg_y + h, bg_x : bg_x + w]
-
-    # separate alpha and color channels from the sticker image
-    sticker_colors = sticker[:, :, :3]
-    alpha_channel = sticker[:, :, 3] / 255  # 0-255 => 0.0-1.0
-
-    # construct an alpha_mask that matches the image shape
-    alpha_mask = np.dstack((alpha_channel, alpha_channel, alpha_channel))
-
-    # combine the background with the sticker image weighted by alpha
-    composite = background_subsection * (1 - alpha_mask) + sticker_colors * alpha_mask
-
-    # overwrite the section of the background image that has been updated
-    background[bg_y : bg_y + h, bg_x : bg_x + w] = composite
-
-    return background
-
-
-def handleButtonState(window: Window):
-    allButtons = Config.filters + Config.stickers
-
-    for button in allButtons:
-        window[button.id].update(
-            button_color=ButtonColor.active if button.isActive else ButtonColor.default,
-        )
-
-
-def handleButtonDisableState(window: Window, disabled: bool):
-    allButtons = Config.filters + Config.stickers
-
-    for button in allButtons:
-        window[button.id].update(disabled=disabled)
-
-
-def handleFilterEvent(event: str, window: Window):
-    isFilterEvent = any(map(lambda filter: filter.id == event, Config.filters))
-
-    if not isFilterEvent:
-        return
-
-    filter = Config.getFilter(event)
-    filter.toggle()
-
-    if filter.id == "cartoon":
-        Config.getFilter("gray").isActive = False
-        Config.getFilter("canny").isActive = False
-        window["gray"].update(disabled=filter.isActive)
-        window["canny"].update(disabled=filter.isActive)
-
-    handleButtonState(window)
-
-
-def handleStickerEvent(event: str, window: Window):
-    isStickerEvent = any(map(lambda sticker: sticker.id == event, Config.stickers))
-
-    if not isStickerEvent:
-        return
-
-    def deactivateAllStickers():
-        for sticker in Config.stickers:
-            sticker.isActive = False
-
-    sticker = Config.getSticker(event)
-
-    if sticker.isActive:
-        deactivateAllStickers()
-    else:
-        deactivateAllStickers()
-        sticker.toggle()
-
-    handleButtonState(window)
-
-
-def handleButtonEvent(event: str, window: Window):
-    handleFilterEvent(event, window)
-    handleStickerEvent(event, window)
 
 
 def main():
     ui = UserInterface()
     isRecording = False
-    frame = None
     fileSource = None
     image = None
     visibleImage = None
     capture = None
     stickers = []
+    videoFrameSize = False
+    imageFrameSize = False
+    savedIndex = 0
 
     while True:
         event, values = ui.window.read(timeout=20)
 
-        src = ui.window["-TEXT-"].get()
+        src = ui.window[Config.events["text"]].get()
 
         if not isRecording and image is None:
             handleButtonDisableState(ui.window, True)
@@ -145,29 +46,28 @@ def main():
             else:
                 image = cv.resize(img, (int(720 * aspectRatio), 720))
 
-        elif event == "-RECORD-":
+        elif event == Config.events["record"]:
             if isRecording:
                 capture.release()
-                frame = None
                 capture = None
-                ui.window["-IMAGE-"].erase()
+                videoFrameSize = False
+                ui.window[Config.events["image"]].erase()
                 handleButtonDisableState(ui.window, True if image is None else False)
             else:
                 capture = cv.VideoCapture(0)
                 handleButtonDisableState(ui.window, False)
 
             isRecording = not isRecording
-            ui.window["-RECORD-"].update(
+            ui.window[Config.events["record"]].update(
                 button_color=ButtonColor.active if isRecording else ButtonColor.default
             )
 
-        elif event == "-SAVE-":
-            if isRecording:
-                ui.window["-SAVE-"].get()
-            elif image is not None:
-                ui.window["-SAVE-"].update(args=visibleImage)
+        elif event == Config.events["save"]:
+            if visibleImage is not None:
+                save(f"output/uni-filter-{savedIndex}.png", ui.window)
+                savedIndex += 1
 
-        elif event == "-IMAGE-":
+        elif event == Config.events["image"]:
             x, y = values[event]
             hasActiveSticker = any(
                 map(lambda sticker: sticker.isActive, Config.stickers)
@@ -176,11 +76,10 @@ def main():
             if hasActiveSticker:
                 for sticker in Config.stickers:
                     if sticker.isActive:
-                        sticker.x = x
-                        sticker.y = y
+                        sticker.position(x, y)
                         stickers.append(sticker)
 
-        elif event == "sticker-clear":
+        elif event == Config.events["sticker-clear"]:
             stickers = []
 
         else:
@@ -188,53 +87,39 @@ def main():
 
         if isRecording:
             _, videoFrame = capture.read()
-            frame = videoFrame
+            filteredFrame = applyFilters(videoFrame)
+            frameBytes = cv.imencode(".png", filteredFrame)[1].tobytes()
+            visibleImage = filteredFrame
 
-            for filter in Config.filters:
-                if filter.isActive:
-                    frame = filter.filter(frame)
-
-            aspectRatio = frame.shape[1] / frame.shape[0]
-
-            if aspectRatio > 1:
-                frame = cv.resize(frame, (720, int(720 / aspectRatio)))
-            else:
-                frame = cv.resize(frame, (int(720 * aspectRatio), 720))
-
-            imageBytes = cv.imencode(".png", frame)[1].tobytes()
-            ui.window["-IMAGE-"].set_size((frame.shape[1], frame.shape[0]))
-            ui.window["-IMAGE-"].draw_image(data=imageBytes, location=(0, 0))
-
-            for sticker in stickers:
-                imageBytes = cv.imencode(".png", sticker.image)[1].tobytes()
-
-                ui.window["-IMAGE-"].draw_image(
-                    data=imageBytes, location=(sticker.x, sticker.y)
+            if videoFrameSize is False:
+                videoFrameSize = True
+                ui.window[Config.events["image"]].set_size(
+                    (videoFrame.shape[1], videoFrame.shape[0])
                 )
+
+            ui.window[Config.events["image"]].draw_image(
+                data=frameBytes, location=(0, 0)
+            )
+            drawStickers(stickers, ui.window)
 
         elif image is not None:
-            visibleImage = image
+            filteredImage = applyFilters(image)
+            visibleImageBytes = cv.imencode(".png", filteredImage)[1].tobytes()
+            visibleImage = filteredImage
 
-            for filter in Config.filters:
-                if filter.isActive:
-                    visibleImage = filter.filter(visibleImage)
-
-            imageBytes = cv.imencode(".png", visibleImage)[1].tobytes()
-            ui.window["-IMAGE-"].set_size(
-                (visibleImage.shape[1], visibleImage.shape[0])
-            )
-            ui.window["-IMAGE-"].draw_image(data=imageBytes, location=(0, 0))
-
-            for sticker in stickers:
-                imageBytes = cv.imencode(".png", sticker.image)[1].tobytes()
-
-                ui.window["-IMAGE-"].draw_image(
-                    data=imageBytes, location=(sticker.x, sticker.y)
+            if imageFrameSize is False:
+                imageFrameSize = True
+                ui.window[Config.events["image"]].set_size(
+                    (image.shape[1], image.shape[0])
                 )
+
+            ui.window[Config.events["image"]].draw_image(
+                data=visibleImageBytes, location=(0, 0)
+            )
+            drawStickers(stickers, ui.window)
 
     if capture is not None:
         capture.release()
-
     ui.window.close()
 
 
