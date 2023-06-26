@@ -24,5 +24,3 @@ do Instagram)
 1. Salvar a foto alterada. No caso do vídeo, salvar um frame
 
 ---
-
-![UniFilter](./assets/goal2goal.gif)
