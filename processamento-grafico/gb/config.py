@@ -18,6 +18,9 @@ class Config:
         Filter("autumn", "Autumn", FilterMethods.Autumn),
         Filter("spring", "Spring", FilterMethods.Spring),
         Filter("cartoon", "Cartoon", FilterMethods.Cartoon),
+        Filter("sepia", "Sepia", FilterMethods.Sepia),
+        Filter("hdr", "HDR", FilterMethods.HDR),
+        Filter("invert", "Invert", FilterMethods.Invert),
     ]
     stickers = [
         Sticker("sticker-eita", "assets/sticker-eita.png"),

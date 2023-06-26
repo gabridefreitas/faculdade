@@ -64,3 +64,21 @@ class FilterMethods:
         color = cv.bilateralFilter(image, 9, 250, 250)
         cartoon = cv.bitwise_and(color, color, mask=edges)
         return cartoon
+
+    @staticmethod
+    def Sepia(image: Mat):
+        image = np.array(image, dtype=np.float64)
+        image = cv.transform(
+            image,
+            np.matrix(
+                [[0.272, 0.534, 0.131], [0.349, 0.686, 0.168], [0.393, 0.769, 0.189]]
+            ),
+        )
+        image[np.where(image > 255)] = 255
+        return np.array(image, dtype=np.uint8)
+
+    def HDR(image: Mat):
+        return cv.detailEnhance(image, sigma_s=12, sigma_r=0.15)
+
+    def Invert(image: Mat):
+        return cv.bitwise_not(image)
