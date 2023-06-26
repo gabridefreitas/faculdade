@@ -1,6 +1,7 @@
 import cv2 as cv
-from cv2 import Mat
 import numpy as np
+
+from cv2 import Mat
 
 
 class FilterMethods:
