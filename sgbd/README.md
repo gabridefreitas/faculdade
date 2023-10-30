@@ -4,6 +4,13 @@
 
 ## Atividade 8
 
+### Integrantes do grupo
+
+- Eduardo Bernardi
+- Gabriel de Freitas Adolfo
+- Víctor Hugo Haberkamp
+- Vinicius Ferreira Marta Flores
+
 ### 1 - Ler artigo sobre SQL, NOSQL e NEWSQL
 
 ### 2 - Implementar uma collection no MongoDB e praticar comandos do material de notas de aula
