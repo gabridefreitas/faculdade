@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "9d1d417a-0ced-4552-b279-78a4c902ef96",
+		"name": "SGBD - Atividade 8",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Home",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Comments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Latest Comments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comment By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Comment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:5050/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Comment",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "\"Test\"",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5050/comments/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"comments",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5a9427648b0beebeb69579e7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Comment",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:5050/comments/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"comments",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5a9427648b0beebeb69579e",
+							"description": "5a9427648b0beebeb69579e7"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
